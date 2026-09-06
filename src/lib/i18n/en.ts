@@ -100,8 +100,8 @@ export const en: Dictionary = {
       role: "Product lead & developer",
       tech: ["React", "TypeScript", "Tailwind CSS"],
       outcome: "Used by the whole group to plan and gamify the trip.",
-      link: "http://emilo.se",
-      linkLabel: "emilo.se",
+      link: "/budapest",
+      linkLabel: "emilo.se/budapest",
     },
     {
       id: "tetris",

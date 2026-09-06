@@ -100,8 +100,8 @@ export const sv: Dictionary = {
       role: "Produktledare & utvecklare",
       tech: ["React", "TypeScript", "Tailwind CSS"],
       outcome: "Användes av gruppen för att samordna planer och aktiviteter.",
-      link: "http://emilo.se",
-      linkLabel: "emilo.se",
+      link: "/budapest",
+      linkLabel: "emilo.se/budapest",
     },
     {
       id: "tetris",
