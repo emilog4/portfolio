@@ -3,39 +3,8 @@ type ArtProps = {
 };
 
 export function TaxiRobotArt({ className }: ArtProps) {
-  return (
-    <svg
-      viewBox="0 0 400 300"
-      fill="none"
-      className={className}
-      role="img"
-      aria-label="Abstract illustration of a route on a city grid, marking pickup stops for an autonomous vehicle"
-    >
-      <g stroke="var(--line)" strokeWidth="1">
-        {[40, 100, 160, 220, 280, 340].map((x) => (
-          <line key={x} x1={x} y1="20" x2={x} y2="280" />
-        ))}
-        {[40, 90, 140, 190, 240, 290].map((y) => (
-          <line key={y} x1="20" y1={y} x2="380" y2={y} />
-        ))}
-      </g>
-      <path
-        d="M60 240 C 120 240, 120 160, 180 160 S 240 90, 320 90"
-        stroke="var(--accent)"
-        strokeWidth="2.5"
-        strokeDasharray="1 9"
-        strokeLinecap="round"
-      />
-      <circle cx="60" cy="240" r="5" fill="var(--ink)" />
-      <circle cx="180" cy="160" r="5" fill="var(--ink)" />
-      <circle cx="320" cy="90" r="7" fill="var(--accent)" />
-      <g transform="translate(160,138)">
-        <rect x="0" y="0" width="40" height="26" rx="8" fill="var(--paper)" stroke="var(--ink)" strokeWidth="2" />
-        <circle cx="13" cy="13" r="3" fill="var(--ink)" />
-        <circle cx="27" cy="13" r="3" fill="var(--ink)" />
-      </g>
-    </svg>
-  );
+  // eslint-disable-next-line @next/next/no-img-element -- static local SVG, no optimization needed
+  return <img src="/robocab/mark.svg" alt="RoboCab logo mark" className={`${className ?? ""} object-contain`} />;
 }
 
 export function BudapestArt({ className }: ArtProps) {

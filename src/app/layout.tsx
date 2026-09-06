@@ -23,7 +23,7 @@ const plexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
-const siteUrl = "https://emillogdberg.dev";
+const siteUrl = "https://emilo.se";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -39,6 +39,9 @@ export const metadata: Metadata = {
     "Portfolio",
   ],
   authors: [{ name: "Emil Lögdberg" }],
+  icons: {
+    icon: "/icon.png",
+  },
   openGraph: {
     title: "Emil Lögdberg — Computer Science & Engineering Student",
     description:
@@ -47,12 +50,14 @@ export const metadata: Metadata = {
     siteName: "Emil Lögdberg",
     locale: "en_US",
     type: "website",
+    images: [{ url: "/opengraph.png", width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Emil Lögdberg — Computer Science & Engineering Student",
     description:
       "Building at the intersection of software, AI, and product. Selected work, experience, and how to get in touch.",
+    images: ["/opengraph.png"],
   },
 };
 

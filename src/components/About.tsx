@@ -21,13 +21,13 @@ export function About() {
           <div className="md:col-span-3">
             <div className="md:sticky md:top-28">
               <Reveal>
-                <div className="group relative aspect-[3/4] w-40 overflow-hidden rounded-2xl border border-line bg-paper-alt sm:w-56 md:w-full">
+                <div className="relative aspect-[3/4] w-40 overflow-hidden rounded-2xl border border-line bg-paper-alt sm:w-56 md:w-full">
                   <Image
                     src="/emil-portrait.webp"
                     alt="Portrait of Emil Lögdberg"
                     fill
                     sizes="(min-width: 768px) 22vw, 224px"
-                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                    className="object-cover"
                     priority
                   />
                 </div>

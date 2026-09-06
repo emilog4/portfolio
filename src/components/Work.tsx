@@ -101,10 +101,8 @@ function ProjectRow({
 
         <div className={`md:col-span-5 ${reversed ? "md:order-1" : "md:order-2"}`}>
           <Reveal delay={0.1}>
-            <div className="group aspect-[4/3] overflow-hidden rounded-2xl border border-line bg-paper-alt p-6">
-              {Art && (
-                <Art className="h-full w-full transition-transform duration-500 ease-out group-hover:scale-[1.03]" />
-              )}
+            <div className="aspect-[4/3] overflow-hidden rounded-2xl border border-line bg-paper-alt p-6">
+              {Art && <Art className="h-full w-full" />}
             </div>
           </Reveal>
         </div>
