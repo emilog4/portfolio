@@ -19,7 +19,7 @@ export const en: Dictionary = {
       "Computer Science and Engineering student with an interest in software, AI, and business.",
     description:
       "Currently studying at Linköping University and working on autonomous systems, web applications, and client projects.",
-    availability: "Open to internships & freelance projects",
+    availability: "Applying for summer 2027 internships · available June–August",
     ctaPrimary: "View my work",
     ctaSecondary: "Get in touch",
     scroll: "Scroll",
@@ -35,10 +35,10 @@ export const en: Dictionary = {
   },
   about: {
     paragraphs: [
-      "I'm 22, originally from Stockholm, and now in my third year of a Master of Science in Engineering, Computer Science at Linköping University. I like taking things apart to understand how they work.",
-      "Alongside my studies, I work as a strategy consultant at Gozinto Studentkonsulter, LiU's student consultancy. My work has included developing an onboarding portal for a client organisation with more than 500 members and conducting market research to support growth decisions. Before that, I worked in pharmacy retail and at McDonald's. These roles have given me practical experience of working with customers and communicating across technical and non-technical contexts.",
-      "When I'm not at a keyboard I'm usually cooking, on a tennis court, or on skis. What I like about cooking is the result and the feeling that comes when a dish really succeeds.",
-      "Long-term, I'm aiming for consulting, AI, or fintech — ideally some mix of the three. I care about building things that's actually used and changes society.",
+      "I’m 22, originally from Stockholm, and now in my third year of a Master of Science in Engineering, Computer Science at Linköping University. I like taking things apart to understand how they work.",
+      "Alongside my studies, I work as a strategy consultant at Gozinto Studentkonsulter, LiU’s student consultancy. My work has included developing an onboarding portal for a client organisation with more than 500 members and conducting market research to support growth decisions. Before that, I worked in pharmacy retail and at McDonald’s. These roles have given me practical experience of working with customers and communicating across technical and non-technical contexts.",
+      "When I’m not at a keyboard I’m usually cooking, on a tennis court, or on skis. What I like about cooking is the result and the feeling that comes when a dish really succeeds.",
+      "Long-term, I’m aiming for the work where the analysis and the build are the same job — which is why the technical side of consulting interests me most. I care about building software that gets used rather than demoed; the vacation planner on this site is the piece I’m proudest of.",
     ],
   },
   strengths: [
@@ -48,12 +48,12 @@ export const en: Dictionary = {
     },
     {
       title: "Striving to learn",
-      detail: "I'm a strong believer in the power of continuous learning. I'm always looking for ways to improve and expand my knowledge. I'm also always looking for new challenges to push myself.",
+      detail: "I’m a strong believer in the power of continuous learning. I’m always looking for ways to improve and expand my knowledge. I’m also always looking for new challenges to push myself.",
     },
     {
       title: "Client-facing by experience",
       detail:
-        "From advising pharmacy customers to strategy consulting at Gozinto. I'm comfortable translating between technical and non-technical audiences.",
+        "From advising pharmacy customers to strategy consulting at Gozinto. I’m comfortable translating between technical and non-technical audiences.",
     },
     {
       title: "Trusted with real responsibility",
@@ -62,7 +62,7 @@ export const en: Dictionary = {
     },
   ],
   work: {
-    heading: "A few things I've built and am building.",
+    heading: "A few things I’ve built and am building.",
     roleLabel: "Role",
     outcomeLabel: "Outcome",
   },
@@ -87,7 +87,7 @@ export const en: Dictionary = {
         "A single-page tool that calculates Swedish public holidays and “klämdagar” (bridge days) for any year, then ranks vacation-day combinations by the amount of consecutive time off they provide.",
       role: "Concept & development",
       tech: ["JavaScript", "HTML & CSS"],
-      outcome: "A working planner that turns a handful of vacation days into full weeks off, using Sweden's actual holiday calendar.",
+      outcome: "A working planner that turns a handful of vacation days into full weeks off, using Sweden’s actual holiday calendar.",
       link: "/tools/semesteroptimering.html",
       linkLabel: "Open the planner",
     },
@@ -96,7 +96,7 @@ export const en: Dictionary = {
       name: "Budapest Spots",
       year: "2026",
       description:
-        "A travel site built for a friend group's trip to Budapest: a live map of every restaurant and activity on the list, plus a points competition where friends assign each other challenges to complete on the trip.",
+        "A travel site built for a friend group’s trip to Budapest: a live map of every restaurant and activity on the list, plus a points competition where friends assign each other challenges to complete on the trip.",
       role: "Product lead & developer",
       tech: ["React", "TypeScript", "Tailwind CSS"],
       outcome: "Used by the whole group to plan and gamify the trip.",
@@ -145,13 +145,13 @@ export const en: Dictionary = {
     },
   ],
   now: {
-    text: "Currently in my third year at Linköping University, working on an autonomous taxi robot with a team of seven and as a strategy consultant at Gozinto. I am looking for internship opportunities in consulting, AI, or fintech.",
+    text: "Third year at Linköping University, building an autonomous taxi robot with a team of seven and working as a strategy consultant at Gozinto. I’m applying now for summer 2027 internships in consulting, AI, or fintech — available June to August 2027.",
     updatedLabel: "Last updated",
     updated: "September 2026",
   },
   contact: {
     heading1: "Have an interesting project?",
-    heading2: "Let's talk.",
+    heading2: "Let’s talk.",
     linkedinLabel: "LinkedIn",
     githubLabel: "GitHub",
   },

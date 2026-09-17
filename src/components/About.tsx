@@ -35,10 +35,13 @@ export function About() {
             </div>
           </div>
 
-          <div className="md:col-span-5">
+          {/* Spacing lives on the container: each <p> is the only child of its
+              own Reveal wrapper, so a `first:mt-0` on the <p> would apply to
+              every paragraph and collapse the rhythm entirely. */}
+          <div className="flex flex-col gap-6 md:col-span-5">
             {about.paragraphs.map((paragraph, i) => (
               <Reveal key={paragraph.slice(0, 24)} delay={0.05 * i}>
-                <p className="mt-6 text-lg leading-relaxed text-ink first:mt-0 md:text-xl">
+                <p className="text-lg leading-relaxed text-ink md:text-xl">
                   {paragraph}
                 </p>
               </Reveal>

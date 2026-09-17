@@ -19,7 +19,7 @@ export const sv: Dictionary = {
       "Civilingenjörsstudent med intresse för mjukvara, AI och affärsutveckling.",
     description:
       "Studerar vid Linköpings universitet och arbetar med autonoma system, webbapplikationer och kundprojekt.",
-    availability: "Öppen för praktik & sommarjobb",
+    availability: "Söker sommarpraktik 2027 · tillgänglig juni–augusti",
     ctaPrimary: "Se mitt arbete",
     ctaSecondary: "Kontakta mig",
     scroll: "Scrolla",
@@ -36,9 +36,9 @@ export const sv: Dictionary = {
   about: {
     paragraphs: [
       "Jag är 22 år, ursprungligen från Stockholm, och går mitt tredje år på civilingenjörsprogrammet i Datateknik vid Linköpings universitet. Jag tycker om att förstå hur saker fungerar genom att undersöka dem på djupet.",
-      "Vid sidan av studierna arbetar jag som strategikonsult på Gozinto Studentkonsulter, en studentdriven konsultbyrå vid universitetet. Mitt arbete har bland annat omfattat utveckling av en onboardingportal för en klientorganisation med fler än 500 medlemmar och marknadsundersökningar som underlag för tillväxtbeslut. Tidigare arbetade jag inom apoteksbranschen och på McDonald's. Det har gett mig praktisk erfarenhet av kundkontakt och av att kommunicera med både tekniska och icke-tekniska målgrupper.",
+      "Vid sidan av studierna arbetar jag som strategikonsult på Gozinto Studentkonsulter, en studentdriven konsultbyrå vid universitetet. Mitt arbete har bland annat omfattat utveckling av en onboardingportal för en klientorganisation med fler än 500 medlemmar och marknadsundersökningar som underlag för tillväxtbeslut. Tidigare arbetade jag inom apoteksbranschen och på McDonald’s. Det har gett mig praktisk erfarenhet av kundkontakt och av att kommunicera med både tekniska och icke-tekniska målgrupper.",
       "När jag inte studerar lagar jag oftast mat, spelar tennis eller åker skidor. I matlagningen uppskattar jag både processen och resultatet när en rätt faller på plats.",
-      "På längre sikt är jag intresserad av roller i gränslandet mellan konsulting, AI och fintech. Jag värdesätter praktiskt arbete som löser tydliga problem och kommer till användning.",
+      "På längre sikt söker jag arbete där analysen och bygget är samma uppgift — det är därför den tekniska sidan av konsulting intresserar mig mest. Jag bryr mig om att bygga mjukvara som används snarare än demas; semesterplaneraren här på sidan är det jag är stoltast över.",
     ],
   },
   strengths: [
@@ -48,7 +48,7 @@ export const sv: Dictionary = {
     },
     {
       title: "Strävar efter ny kunskap",
-      detail: "Jag tror starkt på att kunskap är en av de viktigt. Därför söker jag  nya verktyg, tekniker och utmaningar.",
+      detail: "Jag tror att kunskap är det som tar en längst. Därför söker jag hela tiden nya verktyg, tekniker och utmaningar.",
     },
     {
       title: "Kundnära av erfarenhet",
@@ -58,7 +58,7 @@ export const sv: Dictionary = {
     {
       title: "Betrodd med verkligt ansvar",
       detail:
-        "Skötte bokföring åt Gozintos. Representerar min klass i fakultetens kursutvärderingsmöten.",
+        "Ansvarar för Gozintos interna bokföring. Representerar min klass i fakultetens kursutvärderingsmöten.",
     },
   ],
   work: {
@@ -145,7 +145,7 @@ export const sv: Dictionary = {
     },
   ],
   now: {
-    text: "Går mitt tredje år på Linköpings universitet, arbetar med en autonom taxirobot tillsammans med sex andra studenter och är strategikonsult på Gozinto. Jag söker praktik inom konsulting, AI eller fintech.",
+    text: "Går mitt tredje år på Linköpings universitet, bygger en autonom taxirobot tillsammans med sex andra studenter och arbetar som strategikonsult på Gozinto. Jag söker sommarpraktik 2027 inom konsulting, AI eller fintech — tillgänglig juni till augusti 2027.",
     updatedLabel: "Senast uppdaterad",
     updated: "september 2026",
   },
