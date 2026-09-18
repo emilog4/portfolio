@@ -1,3 +1,5 @@
+export const siteUrl = "https://emilo.se";
+
 export const profile = {
   name: "Emil Lögdberg",
   email: "emil.logdberg@gmail.com",
