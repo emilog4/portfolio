@@ -23,7 +23,7 @@ export function About() {
               <Reveal>
                 <div className="relative aspect-[3/4] w-40 overflow-hidden rounded-2xl border border-line bg-paper-alt sm:w-56 md:w-full">
                   <Image
-                    src="/emil-portrait.webp"
+                    src="/emil-portrait-450.webp"
                     alt="Portrait of Emil Lögdberg"
                     fill
                     sizes="(min-width: 768px) 22vw, 224px"

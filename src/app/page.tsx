@@ -16,7 +16,7 @@ const personJsonLd = {
   "@type": "Person",
   name: profile.name,
   url: siteUrl,
-  image: `${siteUrl}/emil-portrait.webp`,
+  image: `${siteUrl}/emil-portrait-450.webp`,
   description:
     "Computer Science and Engineering student at Linköping University and strategy consultant at Gozinto Studentkonsulter, working in software, AI, and business analysis.",
   affiliation: {
