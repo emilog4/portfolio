@@ -5,38 +5,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useLocale } from "@/lib/i18n/LocaleProvider";
 import { profile } from "@/lib/i18n/profile";
 
-function LocaleToggle({ className }: { className?: string }) {
-  const { locale, setLocale } = useLocale();
-
-  return (
-    <div className={`flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.12em] ${className ?? ""}`}>
-      <button
-        type="button"
-        onClick={() => setLocale("en")}
-        aria-pressed={locale === "en"}
-        className={`focus-ring rounded-sm transition-colors ${
-          locale === "en" ? "text-ink" : "text-ink-muted hover:text-ink"
-        }`}
-      >
-        EN
-      </button>
-      <span aria-hidden="true" className="text-ink-muted">
-        /
-      </span>
-      <button
-        type="button"
-        onClick={() => setLocale("sv")}
-        aria-pressed={locale === "sv"}
-        className={`focus-ring rounded-sm transition-colors ${
-          locale === "sv" ? "text-ink" : "text-ink-muted hover:text-ink"
-        }`}
-      >
-        SV
-      </button>
-    </div>
-  );
-}
-
 export function Nav() {
   const { dictionary } = useLocale();
   const [scrolled, setScrolled] = useState(false);
@@ -82,9 +50,6 @@ export function Nav() {
               </a>
             </li>
           ))}
-          <li className="border-l border-line pl-8">
-            <LocaleToggle />
-          </li>
         </ul>
 
         <button
@@ -137,13 +102,6 @@ export function Nav() {
                   </motion.li>
                 ))}
               </ul>
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, delay: 0.05 * dictionary.nav.length }}
-              >
-                <LocaleToggle className="mt-10" />
-              </motion.div>
             </div>
           </motion.div>
         )}

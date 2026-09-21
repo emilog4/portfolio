@@ -9,6 +9,17 @@ export type Locale = "en" | "sv";
 
 const dictionaries: Record<Locale, Dictionary> = { en, sv };
 
+/**
+ * The site is English-only for now. The Swedish dictionary in sv.ts is kept up
+ * to date, so re-enabling is a two-step change: flip this to true and add a
+ * toggle back into Nav.tsx that calls setLocale (see git history for the
+ * previous EN/SV switch).
+ *
+ * While this is false the stored preference is ignored, so a visitor who
+ * previously switched to Swedish still sees English.
+ */
+const LOCALE_SWITCHING_ENABLED = false;
+
 const STORAGE_KEY = "locale";
 
 const listeners = new Set<() => void>();
@@ -30,6 +41,7 @@ function subscribe(callback: () => void) {
 }
 
 function getSnapshot(): Locale {
+  if (!LOCALE_SWITCHING_ENABLED) return "en";
   if (cachedLocale === null) {
     cachedLocale = readStoredLocale();
   }
