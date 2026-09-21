@@ -84,7 +84,7 @@ export const sv: Dictionary = {
       year: "2026",
       status: "Utvalt",
       description:
-        "Ett enkelsidigt verktyg som räknar ut Sveriges röda dagar och klämdagar för valfritt år och rangordnar semesterkombinationer efter hur många sammanhängande lediga dagar de ger.",
+        "Ett verktyg som modellerar den svenska helgdagskalendern, inklusive rörliga helgdagar och klämdagar, de arbetsdagar som hamnar mellan två lediga dagar. Det rangordnar semesterkombinationer efter hur många sammanhängande lediga dagar varje kombination ger. Verktyget rekommenderar vilka dagar som är bäst att ta ut för att maximera ledigheten.",
       role: "Idé & utveckling",
       tech: ["JavaScript", "HTML & CSS"],
       outcome: "En fungerande planerare baserad på Sveriges faktiska helgdagskalender.",

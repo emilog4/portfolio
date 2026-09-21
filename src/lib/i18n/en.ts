@@ -84,7 +84,7 @@ export const en: Dictionary = {
       year: "2026",
       status: "Featured",
       description:
-        "A single-page tool that calculates Swedish public holidays and “klämdagar” (bridge days) for any year, then ranks vacation-day combinations by the amount of consecutive time off they provide.",
+        "A tool that models the Swedish holiday calendar, including moving holidays and klämdagar, the workdays that fall between two days off. It ranks vacation-day combinations by how many consecutive days off each one produces. The tool gives recommendations for the best days to take in order to maximise the vacation period.",
       role: "Concept & development",
       tech: ["JavaScript", "HTML & CSS"],
       outcome: "A working planner that turns a handful of vacation days into full weeks off, using Sweden’s actual holiday calendar.",
