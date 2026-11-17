@@ -1,5 +1,5 @@
 1:"$Sreact.fragment"
-2:T607f,
+2:T6069,
 <div class="page">
   <header class="topbar">
     <span class="site">emilo.se</span>
@@ -87,7 +87,7 @@
         <div class="stub">
           <img class="shot" src="/img/planner.jpg" alt="The vacation day planner: a year calendar with red days and a side panel listing the best opportunities for time off" width="1200" height="750">
           <div class="bar" aria-hidden="true"></div>
-          <a href="https://emilo.se/tools/semesteroptimering.html">Open the planner</a>
+          <a href="https://emilo.se/planner">Open the planner</a>
         </div>
       </article>
       <article class="ticket">
@@ -371,7 +371,7 @@
   <footer><span>© 2026 Emil Lögdberg</span><span>Linköping, Sweden</span></footer>
 </div>
 7:X
-0:{"buildId":"WqhA97s-OQLDrw2DskoPf","data":[{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"Person\",\"name\":\"Emil Lögdberg\",\"url\":\"https://emilo.se\",\"image\":\"https://emilo.se/img/me.jpg\",\"description\":\"Computer Science and Engineering student at Linköping University and strategy consultant at Gozinto Studentkonsulter, working in software, AI, and business analysis.\",\"affiliation\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Linköping University\",\"url\":\"https://liu.se\"},\"worksFor\":{\"@type\":\"Organization\",\"name\":\"Gozinto Studentkonsulter\",\"url\":\"https://gozinto.se\"},\"address\":{\"@type\":\"PostalAddress\",\"addressLocality\":\"Linköping\",\"addressCountry\":\"SE\"},\"knowsLanguage\":[\"sv\",\"en\"],\"sameAs\":[\"https://www.linkedin.com/in/emil-logdberg/\",\"https://github.com/emilog4\"]}"}}],["$","div",null,{"dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3"],["$L4"],"$L5"]}],"isPartial":"$@6","staleTime":"$7","varyParams":null},{"rsc":"$L8","isPartial":"$@9","staleTime":"$7","varyParams":null},{"rsc":"$La","isPartial":"$@b","staleTime":"$7","varyParams":null}],"isUpgradeableISRFallback":false,"a":"$@c","rootVaryParams":null,"needsRuntimeRequest":"$@d"}
+0:{"buildId":"PIrvgRwlhxusFO6d4q2pr","data":[{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"Person\",\"name\":\"Emil Lögdberg\",\"url\":\"https://emilo.se\",\"image\":\"https://emilo.se/img/me.jpg\",\"description\":\"Computer Science and Engineering student at Linköping University and strategy consultant at Gozinto Studentkonsulter, working in software, AI, and business analysis.\",\"affiliation\":{\"@type\":\"CollegeOrUniversity\",\"name\":\"Linköping University\",\"url\":\"https://liu.se\"},\"worksFor\":{\"@type\":\"Organization\",\"name\":\"Gozinto Studentkonsulter\",\"url\":\"https://gozinto.se\"},\"address\":{\"@type\":\"PostalAddress\",\"addressLocality\":\"Linköping\",\"addressCountry\":\"SE\"},\"knowsLanguage\":[\"sv\",\"en\"],\"sameAs\":[\"https://www.linkedin.com/in/emil-logdberg/\",\"https://github.com/emilog4\"]}"}}],["$","div",null,{"dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3"],["$L4"],"$L5"]}],"isPartial":"$@6","staleTime":"$7","varyParams":null},{"rsc":"$L8","isPartial":"$@9","staleTime":"$7","varyParams":null},{"rsc":"$La","isPartial":"$@b","staleTime":"$7","varyParams":null}],"isUpgradeableISRFallback":false,"a":"$@c","rootVaryParams":null,"needsRuntimeRequest":"$@d"}
 e:I[79520,["/_next/static/chunks/3fntmmi971322.js","/_next/static/chunks/1z6x88ihszho0.js"],""]
 f:I[97367,["/_next/static/chunks/3fntmmi971322.js"],"OutletBoundary"]
 10:"$Sreact.suspense"
