@@ -15,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       // Static asset published alongside the export, not a Next.js route.
-      url: `${siteUrl}/tools/semesteroptimering.html`,
+      url: `${siteUrl}/planner`,
       lastModified,
       changeFrequency: "yearly",
       priority: 0.8,

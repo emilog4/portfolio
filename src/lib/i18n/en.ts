@@ -88,7 +88,7 @@ export const en: Dictionary = {
       role: "Concept & development",
       tech: ["JavaScript", "HTML & CSS"],
       outcome: "A working planner that turns a handful of vacation days into full weeks off, using Sweden’s actual holiday calendar.",
-      link: "/tools/semesteroptimering.html",
+      link: "/planner",
       linkLabel: "Open the planner",
     },
     {

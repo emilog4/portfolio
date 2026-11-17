@@ -1,11 +1,5 @@
-import { About } from "@/components/About";
-import { Contact } from "@/components/Contact";
-import { Experience } from "@/components/Experience";
-import { Footer } from "@/components/Footer";
-import { Hero } from "@/components/Hero";
-import { Nav } from "@/components/Nav";
-import { Skills } from "@/components/Skills";
-import { Work } from "@/components/Work";
+import Script from "next/script";
+import { markup } from "@/components/emilo/markup";
 import { profile, siteUrl } from "@/lib/i18n/profile";
 
 // Structured data so search engines can tell this Emil Lögdberg apart from
@@ -16,7 +10,7 @@ const personJsonLd = {
   "@type": "Person",
   name: profile.name,
   url: siteUrl,
-  image: `${siteUrl}/emil-portrait-450.webp`,
+  image: `${siteUrl}/img/me.jpg`,
   description:
     "Computer Science and Engineering student at Linköping University and strategy consultant at Gozinto Studentkonsulter, working in software, AI, and business analysis.",
   affiliation: {
@@ -47,16 +41,8 @@ export default function Home() {
           __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c"),
         }}
       />
-      <Nav />
-      <main>
-        <Hero />
-        <About />
-        <Work />
-        <Experience />
-        <Skills />
-        <Contact />
-      </main>
-      <Footer />
+      <div dangerouslySetInnerHTML={{ __html: markup }} />
+      <Script src="/emilo.js" strategy="afterInteractive" />
     </>
   );
 }

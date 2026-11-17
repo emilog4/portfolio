@@ -88,7 +88,7 @@ export const sv: Dictionary = {
       role: "Idé & utveckling",
       tech: ["JavaScript", "HTML & CSS"],
       outcome: "En fungerande planerare baserad på Sveriges faktiska helgdagskalender.",
-      link: "/tools/semesteroptimering.html",
+      link: "/planner",
       linkLabel: "Öppna planeraren",
     },
     {

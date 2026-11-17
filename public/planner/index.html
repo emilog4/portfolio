@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semesteroptimering</title>
+<style>
+:root {
+  --bg: #f5f5f0;
+  --surface: #ffffff;
+  --text: #1c1c1e;
+  --muted: #8e8e93;
+  --border: #e5e5ea;
+  --red: #d63031;
+  --red-bg: #fff0ef;
+  --green: #00b894;
+  --green-bg: #e8f8f5;
+  --yellow: #e17055;
+  --yellow-bg: #fff4f0;
+  --gray-bg: #f1f1f1;
+  --gray: #aeaeb2;
+  --blue: #0064e1;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+/* Header */
+.header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 14px 24px; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 10; }
+.header-title { font-size: 17px; font-weight: 700; }
+.header-sub { font-size: 13px; color: var(--muted); }
+.year-nav { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+.year-btn { width: 28px; height: 28px; border: 1px solid var(--border); border-radius: 7px; background: var(--surface); cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; }
+.year-btn:hover { background: var(--bg); }
+.year-label { font-size: 15px; font-weight: 700; min-width: 44px; text-align: center; }
+
+/* Layout */
+.layout { display: grid; grid-template-columns: 1fr 280px; min-height: calc(100vh - 53px); }
+.main { padding: 20px 24px; }
+.sidebar { background: var(--surface); border-left: 1px solid var(--border); padding: 20px; overflow-y: auto; position: sticky; top: 53px; height: calc(100vh - 53px); }
+
+/* Legend */
+.legend { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); font-weight: 500; }
+.legend-dot { width: 10px; height: 10px; border-radius: 3px; }
+
+/* Calendar grid */
+.cal-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+@media (max-width: 1200px) { .cal-grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* Month */
+.month { background: var(--surface); border-radius: 10px; padding: 12px; border: 1px solid var(--border); }
+.month-name { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 8px; color: var(--muted); }
+.day-hdrs { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; margin-bottom: 2px; }
+.day-hdr { text-align: center; font-size: 9px; font-weight: 600; color: var(--gray); padding: 2px 0; }
+.days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; }
+.d { width: 100%; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 11px; border-radius: 5px; font-weight: 500; position: relative; transition: transform 0.1s; }
+.d.pick { cursor: pointer; }
+.d.pick:hover { transform: scale(1.15); z-index: 1; }
+
+/* Day states */
+.d.wknd { color: var(--gray); background: var(--gray-bg); }
+.d.hol { color: var(--red); background: var(--red-bg); font-weight: 800; cursor: default; }
+.d.klam { color: var(--yellow); background: var(--yellow-bg); }
+.d.klam::after { content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 3px; height: 3px; border-radius: 50%; background: var(--yellow); }
+.d.vac { color: #fff; background: var(--green); font-weight: 700; }
+.d.today { outline: 2px solid var(--blue); outline-offset: -1px; }
+
+/* Sidebar */
+.sb-section { margin-bottom: 20px; }
+.sb-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: var(--muted); margin-bottom: 8px; }
+.days-input-row { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+.days-input-row label { font-size: 13px; color: var(--muted); flex: 1; }
+.days-input { width: 60px; border: 1px solid var(--border); border-radius: 7px; padding: 6px 8px; font-size: 15px; font-weight: 700; text-align: center; }
+
+/* Stats */
+.stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+.stat { background: var(--bg); border-radius: 8px; padding: 10px; }
+.stat-val { font-size: 24px; font-weight: 800; line-height: 1; }
+.stat-lbl { font-size: 10px; color: var(--muted); margin-top: 3px; }
+.warn { color: var(--red) !important; }
+
+/* Streak list */
+.streak { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.streak:last-child { border: none; }
+.streak-range { font-size: 12px; font-weight: 600; }
+.streak-sub { font-size: 10px; color: var(--muted); margin-top: 1px; }
+.streak-num { font-size: 20px; font-weight: 800; color: var(--green); }
+.streak-del { width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--border); background: none; cursor: pointer; font-size: 15px; color: var(--muted); display: flex; align-items: center; justify-content: center; padding: 0; line-height: 1; flex-shrink: 0; }
+.streak-del:hover { background: var(--red-bg); border-color: var(--red); color: var(--red); }
+
+/* Suggestions */
+.sug { border: 1px solid var(--border); border-radius: 8px; padding: 10px; margin-bottom: 7px; cursor: pointer; transition: all 0.15s; }
+.sug:hover { border-color: var(--green); background: var(--green-bg); }
+.sug-top { display: flex; justify-content: space-between; align-items: center; }
+.sug-gain { font-size: 13px; font-weight: 700; color: var(--green); }
+.sug-cost { font-size: 10px; background: var(--bg); border-radius: 4px; padding: 2px 6px; color: var(--muted); }
+.sug-desc { font-size: 11px; color: var(--muted); margin-top: 3px; }
+.sug-klam { font-size: 10px; color: var(--yellow); margin-top: 2px; font-weight: 600; }
+
+.btn-clear { width: 100%; padding: 8px; background: none; border: 1px solid var(--border); border-radius: 7px; font-size: 12px; color: var(--muted); cursor: pointer; margin-top: 4px; }
+.btn-clear:hover { color: var(--text); background: var(--bg); }
+.empty-state { font-size: 12px; color: var(--muted); text-align: center; padding: 12px 0; }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div>
+    <div class="header-title">🇸🇪 Semesteroptimering</div>
+    <div class="header-sub">Klicka på arbetsdagar för att lägga till semesterdagar</div>
+  </div>
+  <div class="year-nav">
+    <button class="year-btn" onclick="changeYear(-1)">‹</button>
+    <span class="year-label" id="yearLabel">2026</span>
+    <button class="year-btn" onclick="changeYear(1)">›</button>
+  </div>
+</header>
+
+<div class="layout">
+  <main class="main">
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--red-bg);border:1.5px solid var(--red)"></div>Röd dag</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--gray-bg);border:1.5px solid var(--gray)"></div>Helg</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--yellow-bg);border:1.5px solid var(--yellow)"></div>Klämdag</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>Semesterdag</div>
+    </div>
+    <div class="cal-grid" id="calGrid"></div>
+  </main>
+
+  <aside class="sidebar">
+    <div class="days-input-row">
+      <label>Semesterdagar totalt</label>
+      <input type="number" class="days-input" id="totalInput" value="25" min="0" max="60" oninput="update()">
+    </div>
+
+    <div id="statsArea"></div>
+
+    <button class="btn-clear" onclick="clearAll()">Rensa alla</button>
+
+    <div class="sb-label" style="margin-top:18px">Bästa möjligheter</div>
+    <div id="sugArea"></div>
+  </aside>
+</div>
+
+<script>
+// ── Utilities ──────────────────────────────────────────────
+const key = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const add = (d, n) => { const r = new Date(d); r.setDate(r.getDate()+n); return r; };
+const parse = s => { const [y,m,d] = s.split('-').map(Number); return new Date(y,m-1,d); };
+
+const MONTHS = ['Januari','Februari','Mars','April','Maj','Juni','Juli','Augusti','September','Oktober','November','December'];
+const SHORT_MONTHS = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
+const DAY_HDRS = ['Mån','Tis','Ons','Tor','Fre','Lör','Sön'];
+
+// ── Easter (Anonymous Gregorian) ───────────────────────────
+function easter(year) {
+  const a=year%19, b=Math.floor(year/100), c=year%100,
+    d=Math.floor(b/4), e=b%4, f=Math.floor((b+8)/25),
+    g=Math.floor((b-f+1)/3), h=(19*a+b-d-g+15)%30,
+    i=Math.floor(c/4), k=c%4, l=(32+2*e+2*i-h-k)%7,
+    m=Math.floor((a+11*h+22*l)/451),
+    mo=Math.floor((h+l-7*m+114)/31),
+    dy=((h+l-7*m+114)%31)+1;
+  return new Date(year, mo-1, dy);
+}
+
+// ── Swedish public holidays ────────────────────────────────
+function holidays(year) {
+  const H = {}, set = (d, name) => { H[key(d)] = name; };
+  set(new Date(year,0,1),  'Nyårsdagen');
+  set(new Date(year,0,6),  'Trettondedag jul');
+  set(new Date(year,4,1),  'Första maj');
+  set(new Date(year,5,6),  'Nationaldagen');
+  set(new Date(year,11,25),'Juldagen');
+  set(new Date(year,11,26),'Annandag jul');
+  const e = easter(year);
+  set(add(e,-2), 'Långfredag');
+  set(e,         'Påskdagen');
+  set(add(e, 1), 'Annandag påsk');
+  set(add(e,39), 'Kristi himmelsfärdsdag');
+  set(add(e,49), 'Pingstdagen');
+  // Midsommardagen: first Saturday ≥ June 20
+  let mid = new Date(year,5,20); while(mid.getDay()!==6) mid=add(mid,1); set(mid,'Midsommardagen');
+  // Alla helgons dag: first Saturday ≥ Oct 31
+  let alh = new Date(year,9,31); while(alh.getDay()!==6) alh=add(alh,1); set(alh,'Alla helgons dag');
+  return H;
+}
+
+// ── Klämdagar (single weekdays bridged by off-days) ────────
+function klamdagar(rangeStart, rangeEnd, H) {
+  const off = new Set();
+  let d = new Date(rangeStart);
+  while(d<=rangeEnd) { if(d.getDay()===0||d.getDay()===6||H[key(d)]) off.add(key(d)); d=add(d,1); }
+
+  // Expand: single weekday between two off-days (handles cross-year boundaries)
+  let changed = true;
+  while(changed) {
+    changed = false;
+    d = new Date(rangeStart);
+    while(d<=rangeEnd) {
+      const k=key(d), dow=d.getDay();
+      if(!off.has(k) && dow!==0 && dow!==6 && !H[k]) {
+        if(off.has(key(add(d,-1))) && off.has(key(add(d,1)))) {
+          off.add(k); changed=true;
+        }
+      }
+      d=add(d,1);
+    }
+  }
+
+  // Return only the weekday non-holiday ones we added
+  const K = {};
+  d = new Date(rangeStart);
+  while(d<=rangeEnd) {
+    const k=key(d), dow=d.getDay();
+    if(off.has(k) && dow!==0 && dow!==6 && !H[k]) K[k]=true;
+    d=add(d,1);
+  }
+  return K;
+}
+
+// ── Streak computation ─────────────────────────────────────
+function streaks(year, H, vac) {
+  const result = [];
+  let cur = new Date(year,0,1), end = new Date(year+1,0,31);
+  const isOff = d => { const dow=d.getDay(),k=key(d); return dow===0||dow===6||H[k]||K[k]||vac.has(k); };
+  let start=null, len=0, vdays=0;
+  while(cur<=end) {
+    if(isOff(cur)) {
+      if(!start) { start=new Date(cur); len=0; vdays=0; }
+      len++;
+      if(vac.has(key(cur))) vdays++;
+    } else {
+      if(len>0) result.push({start,end:add(cur,-1),days:len,vdays});
+      start=null; len=0; vdays=0;
+    }
+    cur=add(cur,1);
+  }
+  if(len>0) result.push({start,end,days:len,vdays});
+  return result.filter(s=>s.days>=2).sort((a,b)=>b.days-a.days);
+}
+
+// ── Suggestions: gaps of 1–5 workdays between off-periods ──
+function suggestions(year, H, vac) {
+  const start = new Date(year,0,1), end = new Date(year+1,0,31);
+  const baseOff = d => { const dow=d.getDay(),k=key(d); return dow===0||dow===6||H[k]||K[k]; };
+  const result = [];
+
+  let cur = new Date(start);
+  while(cur<=end) {
+    if(!baseOff(cur) && !vac.has(key(cur))) {
+      // Gap start
+      const gapStart = new Date(cur), gapDays = [];
+      while(cur<=end && !baseOff(cur)) {
+        gapDays.push(key(cur));
+        cur=add(cur,1);
+      }
+      const gapEnd = add(cur,-1), cost = gapDays.length;
+      if(cost<=5) {
+        const before = add(gapStart,-1), after = new Date(cur);
+        if(baseOff(before) && baseOff(after)) {
+          // Count left stretch
+          let L=0, l=new Date(before);
+          while(l>=start && baseOff(l)) { L++; l=add(l,-1); }
+          // Count right stretch
+          let R=0, r=new Date(after);
+          while(r<=end && baseOff(r)) { R++; r=add(r,1); }
+          const total=L+cost+R;
+          const eff=(total/cost);
+          if(eff>1.5) {
+            result.push({
+              cost, total, eff,
+              gapDays,
+              pStart:add(gapStart,-L),
+              pEnd:add(gapEnd,R),
+              hasKlam:gapDays.some(k=>K[k])
+            });
+          }
+        }
+      }
+    } else {
+      cur=add(cur,1);
+    }
+  }
+
+  return result
+    .filter(s=>!s.gapDays.every(k=>vac.has(k)))
+    .sort((a,b)=>b.eff-a.eff||a.cost-b.cost)
+    .slice(0,10);
+}
+
+// ── App State ──────────────────────────────────────────────
+let Y = 2026, vac = new Set(), H = {}, K = {}, sugs = [], strks = [];
+const today = key(new Date());
+
+function changeYear(d) { Y+=d; vac=new Set(); document.getElementById('yearLabel').textContent=Y; boot(); }
+function clearAll() { vac=new Set(); update(); }
+
+function toggleDay(k) {
+  if(H[k]) return;
+  const d=parse(k); if(d.getDay()===0||d.getDay()===6) return;
+  vac.has(k) ? vac.delete(k) : vac.add(k);
+  update();
+}
+
+function applySug(i) {
+  sugs[i].gapDays.forEach(k=>vac.add(k));
+  update();
+}
+
+function removeStreak(i) {
+  const s = strks[i];
+  if(!s) return;
+  let cur = new Date(s.start);
+  while(cur <= s.end) { vac.delete(key(cur)); cur=add(cur,1); }
+  update();
+}
+
+function boot() {
+  const H1=holidays(Y), H2=holidays(Y+1);
+  H={...H1,...H2};
+  K=klamdagar(new Date(Y,0,1), new Date(Y+1,0,31), H);
+  update();
+}
+
+// ── Render calendar ────────────────────────────────────────
+function renderCal() {
+  const grid = document.getElementById('calGrid');
+  let html = '';
+
+  // 12 months of Y + January of Y+1
+  const calMonths = [];
+  for(let mo=0;mo<12;mo++) calMonths.push({yr:Y,mo});
+  calMonths.push({yr:Y+1,mo:0});
+
+  for(const {yr,mo} of calMonths) {
+    const first = new Date(yr,mo,1);
+    let startDow = first.getDay(); startDow = startDow===0?6:startDow-1; // Mon=0
+    const dim = new Date(yr,mo+1,0).getDate();
+    const label = yr!==Y ? `${MONTHS[mo]} ${yr}` : MONTHS[mo];
+
+    html += `<div class="month"${yr!==Y?' style="border-color:var(--blue);border-width:2px"':''}><div class="month-name">${label}</div>
+      <div class="day-hdrs">${DAY_HDRS.map(h=>`<div class="day-hdr">${h}</div>`).join('')}</div>
+      <div class="days">`;
+
+    for(let i=0;i<startDow;i++) html+=`<div class="d"></div>`;
+
+    for(let day=1;day<=dim;day++) {
+      const d=new Date(yr,mo,day), k=key(d), dow=d.getDay();
+      let cls='d';
+      if(vac.has(k)) cls+=' vac';
+      else if(H[k]) cls+=' hol';
+      else if(dow===0||dow===6) cls+=' wknd';
+      else if(K[k]) cls+=' klam';
+      else cls+=' pick';
+      if(k===today) cls+=' today';
+
+      const clickable = !H[k] && !K[k] && dow!==0 && dow!==6;
+      const tip = H[k]||(K[k]?'Klämdag (redan ledig)':'');
+      html+=`<div class="${cls}"${clickable?` onclick="toggleDay('${k}')"`:''}${tip?` title="${tip}"`:''}>${day}</div>`;
+    }
+    html+=`</div></div>`;
+  }
+  grid.innerHTML=html;
+}
+
+// ── Render sidebar ─────────────────────────────────────────
+function fmt(d) {
+  const yr = d.getFullYear()!==Y ? ` ${d.getFullYear()}` : '';
+  return `${d.getDate()} ${SHORT_MONTHS[d.getMonth()]}${yr}`;
+}
+
+function renderSidebar() {
+  const total = parseInt(document.getElementById('totalInput').value)||0;
+  const used = vac.size, rem = total-used;
+  const S = streaks(Y,H,vac);
+  const longest = S.length?S[0].days:0;
+
+  // Count total days off across the full planning range (Y + Jan of Y+1)
+  let totalOff=0, planDays=0;
+  { let c=new Date(Y,0,1),e=new Date(Y+1,0,31);
+    while(c<=e){ planDays++; const k=key(c),dow=c.getDay(); if(dow===0||dow===6||H[k]||K[k]||vac.has(k)) totalOff++; c=add(c,1); } }
+
+  // Stats
+  let html=`<div class="stat-row">
+    <div class="stat"><div class="stat-val${rem<0?' warn':''}">${used}<span style="font-size:14px;font-weight:500;color:var(--muted)">/${total}</span></div><div class="stat-lbl">Använda dagar</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--green)">${longest}</div><div class="stat-lbl">Längsta ledighet</div></div>
+  </div>
+  <div class="stat" style="margin-bottom:8px">
+    <div class="stat-val" style="color:var(--blue)">${totalOff}<span style="font-size:14px;font-weight:500;color:var(--muted)"> / ${planDays}</span></div>
+    <div class="stat-lbl">Totalt lediga dagar</div>
+  </div>`;
+
+  if(rem<0) html+=`<div style="font-size:11px;color:var(--red);margin-bottom:8px">⚠ ${Math.abs(rem)} dagar för många valda</div>`;
+
+  strks = S.slice(0,6);
+  if(strks.length) {
+    html+=`<div class="sb-label">Dina ledighetsperioder</div>`;
+    strks.forEach((s,i)=>{
+      html+=`<div class="streak"><div>
+        <div class="streak-range">${fmt(s.start)} – ${fmt(s.end)}</div>
+        <div class="streak-sub">${s.vdays} semesterdag${s.vdays!==1?'ar':''} · ${s.days} dagar ledigt</div>
+      </div><div style="display:flex;align-items:center;gap:6px">
+        <div class="streak-num">${s.days}</div>
+        ${s.vdays>0?`<button class="streak-del" onclick="removeStreak(${i})" title="Ta bort semesterdagar i denna period">×</button>`:''}
+      </div></div>`;
+    });
+  }
+
+  document.getElementById('statsArea').innerHTML=html;
+
+  // Suggestions
+  sugs=suggestions(Y,H,vac);
+  let sugHtml='';
+  if(!sugs.length) {
+    sugHtml=`<div class="empty-state">Du har maximerat ledigheten! 🎉</div>`;
+  } else {
+    sugs.forEach((s,i)=>{
+      const ratio=(s.total/s.cost).toFixed(1);
+      sugHtml+=`<div class="sug" onclick="applySug(${i})">
+        <div class="sug-top">
+          <span class="sug-gain">${s.total} dagar ledigt</span>
+          <span class="sug-cost">${s.cost} dag${s.cost>1?'ar':''}</span>
+        </div>
+        <div class="sug-desc">${fmt(s.pStart)} – ${fmt(s.pEnd)} · ${ratio}× effektivitet</div>
+      </div>`;
+    });
+  }
+  document.getElementById('sugArea').innerHTML=sugHtml;
+}
+
+function update() { renderCal(); renderSidebar(); }
+boot();
+</script>
+</body>
+</html>

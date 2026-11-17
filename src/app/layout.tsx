@@ -1,40 +1,45 @@
-import type { Metadata } from "next";
-import { Fraunces, Inter, IBM_Plex_Mono } from "next/font/google";
-import { LocaleProvider } from "@/lib/i18n/LocaleProvider";
+import type { Metadata, Viewport } from "next";
+import { Doto, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  axes: ["opsz"],
-  display: "swap",
-});
-
-const inter = Inter({
-  variable: "--font-inter",
+const geistSans = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
   display: "swap",
 });
 
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-mono-stack",
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
   weight: ["400", "500"],
   display: "swap",
 });
 
+// Dot-matrix face for the ticket route codes and the email address.
+const doto = Doto({
+  variable: "--font-doto",
+  subsets: ["latin"],
+  weight: ["900"],
+  display: "swap",
+});
+
 const siteUrl = "https://emilo.se";
+
+export const viewport: Viewport = {
+  colorScheme: "dark",
+  themeColor: "#000000",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Emil Lögdberg — Computer Science & Engineering Student",
   description:
-    "Portfolio of Emil Lögdberg, a computer science & engineering student at Linköping University building in AI, software, and product. Based in Linköping, Sweden.",
+    "Portfolio of Emil Lögdberg, a computer science & engineering student at Linköping University. Free for a summer internship in June to August 2027. Based in Linköping, Sweden.",
   keywords: [
     "Emil Lögdberg",
-    "Computer Science",
+    "Computer Science and Engineering",
     "Software Engineer",
-    "Machine Learning",
+    "Internship",
     "Linköping University",
     "Portfolio",
   ],
@@ -45,7 +50,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Emil Lögdberg — Computer Science & Engineering Student",
     description:
-      "Building at the intersection of software, AI, and product. Selected work, experience, and how to get in touch.",
+      "Computer science & engineering student at Linköping University, free for a summer internship in 2027. Projects, experience and how to get in touch.",
     url: siteUrl,
     siteName: "Emil Lögdberg",
     locale: "en_US",
@@ -56,7 +61,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Emil Lögdberg — Computer Science & Engineering Student",
     description:
-      "Building at the intersection of software, AI, and product. Selected work, experience, and how to get in touch.",
+      "Computer science & engineering student at Linköping University, free for a summer internship in 2027. Projects, experience and how to get in touch.",
     images: ["/opengraph.png"],
   },
 };
@@ -67,10 +72,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${inter.variable} ${plexMono.variable}`}>
-      <body>
-        <LocaleProvider>{children}</LocaleProvider>
-      </body>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${doto.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }
